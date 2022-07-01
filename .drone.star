@@ -33,6 +33,7 @@ def build_pipeline(ctx):
                     "repo": "drone-plugin/ecr",
                     "dockerfile": "docker/ecr/Dockerfile.linux.arm",
                     "custom_dns": "169.254.169.253",
+                    "auto_tag": "true",
                 },
             },
             notify_author(
