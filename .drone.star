@@ -13,6 +13,17 @@ def build_pipeline(ctx):
         "kind": "pipeline",
         "name": "build and push drone ecr image",
         "steps": [
+            {
+                "name": "build-push",
+                "image": "golang:1.17.3",
+                "commands": [
+                    "go build -v -ldflags \"-X main.version=${DRONE_COMMIT_SHA:0:8}\" -a -tags netgo -o release/linux/arm/drone-ecr ./cmd/drone-ecr",
+                ],
+                "environment": {
+                    "CGO_ENABLED": 0,
+                    "GO111MODULE": "on"
+                },
+            },
             generate_tags_file(ctx),
             {
                 "name": "build and push drone ecr image",
