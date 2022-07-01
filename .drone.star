@@ -17,7 +17,7 @@ def build_pipeline(ctx):
                 "name": "build-push",
                 "image": "golang:1.17.3",
                 "commands": [
-                    "go build -v -ldflags \"-X main.version=${DRONE_COMMIT_SHA:0:8}\" -a -tags netgo -o release/linux/arm/drone-ecr ./cmd/drone-ecr",
+                    "go build -v -ldflags \"-X main.version=${DRONE_COMMIT_SHA:0:8}\" -a -tags netgo -o release/linux/amd64/drone-ecr ./cmd/drone-ecr",
                 ],
                 "environment": {
                     "CGO_ENABLED": 0,
@@ -31,7 +31,7 @@ def build_pipeline(ctx):
                 "settings": {
                     "registry": ECR_URL,
                     "repo": "drone-plugin/ecr",
-                    "dockerfile": "docker/ecr/Dockerfile.linux.arm",
+                    "dockerfile": "docker/ecr/Dockerfile.linux.amd64",
                     "custom_dns": "169.254.169.253",
                     "auto_tag": "true",
                 },
