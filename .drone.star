@@ -17,6 +17,7 @@ def build_pipeline(ctx):
                 "name": "build-push",
                 "image": "golang:1.17.3",
                 "commands": [
+                    "go build -v -ldflags \"-X main.version=${DRONE_COMMIT_SHA:0:8}\" -a -tags netgo -o release/linux/amd64/drone-docker ./cmd/drone-docker",
                     "go build -v -ldflags \"-X main.version=${DRONE_COMMIT_SHA:0:8}\" -a -tags netgo -o release/linux/amd64/drone-ecr ./cmd/drone-ecr",
                 ],
                 "environment": {
