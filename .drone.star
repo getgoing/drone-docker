@@ -43,8 +43,7 @@ def build_pipeline(ctx):
             ),
         ],
         "trigger": {
-            "branch": ["master"],
-            "event": ["push"],
+            "event": ["pull_request"],
         },
     }
 
