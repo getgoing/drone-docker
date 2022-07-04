@@ -54,6 +54,6 @@ def generate_tags_file(ctx):
         "name": "generate tags file",
         "image": "alpine:3.11.5",
         "commands": [
-            'echo -n "$(cat version),$DRONE_BUILD_NUMBER,latest,{}" > .tags'.format(commit_sha),
+            'echo -n "$DRONE_BUILD_NUMBER,latest,{}" > .tags'.format(commit_sha),
         ],
     }
